@@ -92,6 +92,21 @@ buttonA.mousePressed(function(){
 
 buttonA.mousePressed(function(){
     console.log("the A button was clicked")
-    classifier.addImage(input1.value())
+    classifier.addImage(inputA.value())
   })
 ```
+
+9. We also want to increment our image counter for that variant by 1, and update the HTML containing that number.
+
+```
+  buttonA.mousePressed(function(){
+    console.log("the A button was clicked")
+    classifier.addImage(inputA.value())
+    countA++;
+    select('#countA').html(countA)
+  })
+ ```
+
+10. Do the smae this for button and input B!
+
+11.
