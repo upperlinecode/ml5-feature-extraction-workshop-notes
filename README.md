@@ -5,7 +5,7 @@ Start off by talking about what machine learning is. How do we train them? In th
 
 Head to our starter code, [found here](https://glitch.com/edit/#!/feature-extraction-starter-code).
 
-We've built out HTML and CSS, and started us off with capturing the video and displaying it on the canvas. We also have inputs, buttons, and a status bar.
+We've built out HTML and CSS, and started us off with capturing the video and displaying it on the canvas. We also have inputs, buttons, and a status bar. Notice that the video is saved to the variable `video` for use later.
 
 Where we go from here:
 
@@ -24,5 +24,27 @@ function modelReady(){
  console.log("loaded feature extractor")
 }
 ```
+3. Using the feature extractor, we now need to create a new classifier - this is where we're going to be sending the pictures we take with labels so that the model can get trained. (also makes sure to declare the classifier and featureExtractor variables up top.
 
+```
+  classifier = featureExtractor.classification(video, videoReady)
+```
 
+4. Let's set up all of the functionality of the buttons and the inputs. This is the core of the coding, and we could do it in the setup since it only needs to run once. But that will get messy, so I'm going to create a new function called `buttonSetup` and call it from the setup function.
+
+```
+function buttonSetup(){
+
+}
+```
+
+5. So let's think about the variables we need and start declaring them up top: variables to hold the inputs, variables to hold the buttons, a variable to hold the prediction, variables to keep track of the counts of trained images (optional).
+
+```
+//variable declaration space
+let video;
+let inputA, inputB;
+let buttonA, buttonB;
+let trainButton;
+let countA, countB;
+```
