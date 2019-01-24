@@ -76,3 +76,22 @@ function buttonSetup(){
    
 }
 ```
+
+7. Ok, now for the fun stuff. When we click on the training buttons, we want the classifier to take a snapshot of the video at that time and label it with the name we've put in in the input. Let's do that for the A button and input. First make sure that you can see the button get clicked
+
+```
+buttonA.mousePressed(function(){
+  console.log("the button was clicked")
+})
+```
+
+8. Now let's feed the value of `inputA` to our classifier when the button is clicked. We do this with the addImage() method.
+
+```
+//remember that this is inside of buttonSetup
+
+buttonA.mousePressed(function(){
+    console.log("the A button was clicked")
+    classifier.addImage(input1.value())
+  })
+```
