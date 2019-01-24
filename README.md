@@ -50,7 +50,7 @@ function buttonSetup(){
 let video;
 let inputA, inputB;
 let buttonA, buttonB;
-let trainandpredictButton;
+let trainAndPredictButton;
 let countA, countB;
 ```
 
@@ -72,7 +72,7 @@ function buttonSetup(){
   buttonB = select('#buttonB')
   
   // Select the train+predict button
-  trainandpredictButton = train = select('#train');
+  trainAndPredictButton = select('#train');
    
 }
 ```
@@ -107,6 +107,52 @@ buttonA.mousePressed(function(){
   })
  ```
 
-10. Do the smae this for button and input B!
+10. Do the same thing for button and input B!
 
-11.
+11. Now let's turn to training and prediction. We want this to happen when we click the train and predict button. Also in buttonSetup, when the trainAndPredictButton is pressed we want to start training using `classifier.train()`. We also will want to show the loss as the model is getting trained.
+
+```
+ trainAndPredictButton.mousePressed(function() {
+    classifier.train(function(lossValue) {
+      if (lossValue) {
+        loss = lossValue;
+        console.log(lossValue)
+      } else {
+        console.log('Done Training! Final Loss: ' + loss);
+        classifier.classify(gotResults)
+      }
+    });
+  });
+}
+```
+
+12. The last line of the else statement above calls the `.classify` method, which then runs a callback method that we'll call `gotResults`. This is an error first callback that looks like this:
+
+```
+function gotResults(err, data){
+ if(err){
+   console.log(err)
+ }else{
+   console.log(data)
+ } 
+}
+```
+We log the error if the result is the error. Otherwise we print out the result (labeled data). If we stop here and run this you will only get one prediction... If you want it to be continuous, then you need to re-call the classify method which takes us back to gotResults, in a continuous loop. Here's how to do that:
+
+```
+function reclassify(){
+   classifier.classify(gotResults)
+}
+
+function gotResults(err, data){
+ if(err){
+   console.log(err)
+ }else{
+   console.log(data)
+   reclassify()
+ }
+  
+}
+```
+
+13. Use that data variable however you want in your P5 Sketch.. FINISH...
