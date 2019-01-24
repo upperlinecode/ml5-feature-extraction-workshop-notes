@@ -24,10 +24,15 @@ function modelReady(){
  console.log("loaded feature extractor")
 }
 ```
-3. Using the feature extractor, we now need to create a new classifier - this is where we're going to be sending the pictures we take with labels so that the model can get trained. (also makes sure to declare the classifier and featureExtractor variables up top.
+3. Using the feature extractor, we now need to create a new classifier - this is where we're going to be sending the pictures we take with labels so that the model can get trained. (also makes sure to declare the classifier and featureExtractor variables up top. Notice that there is a callback here to `videoReady`, which we also have to declare.
 
 ```
   classifier = featureExtractor.classification(video, videoReady)
+```
+```
+function videoReady(){
+   console.log("video ready")
+}
 ```
 
 4. Let's set up all of the functionality of the buttons and the inputs. This is the core of the coding, and we could do it in the setup since it only needs to run once. But that will get messy, so I'm going to create a new function called `buttonSetup` and call it from the setup function.
@@ -45,6 +50,29 @@ function buttonSetup(){
 let video;
 let inputA, inputB;
 let buttonA, buttonB;
-let trainButton;
+let trainandpredictButton;
 let countA, countB;
+```
+
+6. Let's populate these variables in the `buttonSetup` function:
+
+```
+function buttonSetup(){
+  //We start our counters of training images at 0
+  countA = 0
+  countB = 0
+  
+  // Set the input DOM elements to the variables created.
+  inputA = select('#inputA')
+  inputB = select('#inputB')
+  
+  // Set the capture buttons to the variables created
+  
+  buttonA = select('#buttonA')
+  buttonB = select('#buttonB')
+  
+  // Select the train+predict button
+  trainandpredictButton = train = select('#train');
+   
+}
 ```
